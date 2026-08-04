@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Athul Raj V M — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F7F3;
+    --paper-line: #E3E7E1;
+    --stripe: #EAF0EA;
+    --ink: #1C2B33;
+    --ink-soft: #4B5A61;
+    --rule: #C9D2C6;
+    --stamp: #A3392C;
+    --stamp-soft: #F4E4E0;
+    --ledger-green: #2F6B4F;
+    --ledger-green-soft: #E3EEE7;
+    --paper-card: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--stamp-soft); color: var(--stamp); }
+
+  a { color: inherit; }
+
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .serif { font-family: 'IBM Plex Serif', serif; }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Ledger paper texture ---------- */
+  .ledger-bg {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--stripe) 0px,
+      var(--stripe) 34px,
+      transparent 34px,
+      transparent 68px
+    );
+  }
+
+  /* ---------- Header / masthead ---------- */
+  header.masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 22px 0 16px;
+  }
+  .masthead-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    border: 1.5px solid var(--ink);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; font-weight: 600;
+    flex-shrink: 0;
+  }
+  .brand-name {
+    font-family: 'IBM Plex Serif', serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+  nav.masthead-nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    margin-left: 22px;
+    letter-spacing: 0.02em;
+  }
+  nav.masthead-nav a:hover { color: var(--stamp); }
+  nav.masthead-nav a:first-child { margin-left: 0; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 64px 0 40px;
+    position: relative;
+  }
+  .doc-no {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .doc-no span { margin-right: 24px; }
+  .hero h1 {
+    font-family: 'IBM Plex Serif', serif;
+    font-weight: 600;
+    font-size: clamp(34px, 5.4vw, 58px);
+    line-height: 1.12;
+    margin: 0 0 22px;
+    max-width: 15ch;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--stamp);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 34px;
+  }
+  .hero-meta div {
+    padding: 14px 18px 14px 0;
+    border-right: 1px solid var(--rule);
+  }
+  .hero-meta div:last-child { border-right: none; }
+  .hero-meta .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .hero-meta .value {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .cta-row { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+  .btn-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 13px 22px;
+    border-radius: 3px;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn-stamp:hover { background: var(--stamp); transform: translateY(-1px); }
+  .link-plain {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+  }
+  .link-plain:hover { color: var(--stamp); border-color: var(--stamp); }
+
+  /* Approved stamp */
+  .stamp {
+    position: absolute;
+    top: 46px;
+    right: 28px;
+    width: 132px;
+    height: 132px;
+    border: 3px solid var(--ledger-green);
+    border-radius: 50%;
+    color: var(--ledger-green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(-14deg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    opacity: 0.85;
+    pointer-events: none;
+    padding: 8px;
+  }
+  .stamp span { display: block; white-space: nowrap; }
+  .stamp .small { font-size: 9px; letter-spacing: 0.12em; margin-top: 4px; }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--paper-line); }
+  section:last-of-type { border-bottom: none; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .section-no {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--stamp);
+    border: 1px solid var(--stamp);
+    border-radius: 3px;
+    padding: 2px 7px;
+  }
+  .section-title {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .section-lede {
+    color: var(--ink-soft);
+    max-width: 60ch;
+    line-height: 1.65;
+    margin: -10px 0 28px;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+  }
+  .about-grid p { line-height: 1.75; color: var(--ink-soft); font-size: 15.5px; margin: 0 0 16px; }
+  .about-grid p strong { color: var(--ink); font-weight: 600; }
+
+  .stat-block {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 18px 20px;
+    background: var(--paper-card);
+  }
+  .stat-block + .stat-block { margin-top: 14px; }
+  .stat-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ledger-green);
+  }
+  .stat-label { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+
+  /* ---------- Chart of skills ---------- */
+  .accounts {
+    border-top: 1px solid var(--ink);
+  }
+  .account-row {
+    display: grid;
+    grid-template-columns: 46px 160px 1fr;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--paper-line);
+    align-items: start;
+  }
+  .account-row .idx {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--stamp);
+    font-size: 13px;
+    padding-top: 2px;
+  }
+  .account-row .cat {
+    font-family: 'IBM Plex Serif', serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding-top: 1px;
+  }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    background: var(--ledger-green-soft);
+    color: var(--ledger-green);
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  /* ---------- Ledger (experience) ---------- */
+  .ledger-entry {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--paper-card);
+    padding: 24px 26px;
+  }
+  .ledger-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .ledger-role { font-family: 'IBM Plex Serif', serif; font-size: 19px; font-weight: 600; }
+  .ledger-co { color: var(--ink-soft); font-size: 14px; margin-top: 3px; }
+  .ledger-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .ledger-lines { display: flex; flex-direction: column; gap: 12px; }
+  .ledger-line {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: baseline;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .ledger-line .credit {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    color: var(--ledger-green);
+    white-space: nowrap;
+    font-size: 13.5px;
+  }
+
+  /* ---------- Projects ---------- */
+  .receipts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .receipt {
+    background: var(--paper-card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 22px 22px;
+    position: relative;
+  }
+  .receipt::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: 12px; right: 12px; height: 6px;
+    background:
+      radial-gradient(circle at 6px 0, transparent 6px, var(--paper) 6.5px) top left / 12px 6px repeat-x;
+  }
+  .receipt-no {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .receipt h3 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 17px;
+    margin: 0 0 10px;
+    line-height: 1.35;
+  }
+  .receipt p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+  .receipt .tag-list { margin-bottom: 0; }
+  .receipt .tag { background: var(--paper); color: var(--ink-soft); border: 1px solid var(--rule); }
+
+  /* ---------- Education ---------- */
+  table.edu-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+  }
+  table.edu-table th {
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    padding: 0 0 10px;
+    border-bottom: 1px solid var(--ink);
+  }
+  table.edu-table td {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--paper-line);
+    vertical-align: top;
+  }
+  table.edu-table td.deg { font-weight: 600; font-family: 'IBM Plex Serif', serif; }
+  table.edu-table td.right { text-align: right; font-family: 'IBM Plex Mono', monospace; color: var(--ink-soft); font-size: 13px; }
+
+  /* ---------- Footer / remittance ---------- */
+  footer {
+    padding: 60px 0 50px;
+  }
+  .remit {
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    background: var(--paper-card);
+  }
+  .remit h2 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: 26px;
+    margin: 0 0 10px;
+    max-width: 16ch;
+  }
+  .remit p { color: var(--ink-soft); margin: 0; font-size: 14.5px; max-width: 40ch; line-height: 1.6; }
+  .contact-list { display: flex; flex-direction: column; gap: 10px; }
+  .contact-list a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .contact-list a:hover { color: var(--stamp); }
+  .contact-list .k { color: var(--ink-soft); width: 62px; flex-shrink: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .foot-note {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 30px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .receipts { grid-template-columns: 1fr; }
+    .hero-meta { grid-template-columns: 1fr; }
+    .hero-meta div { border-right: none; border-bottom: 1px solid var(--rule); }
+    .hero-meta div:last-child { border-bottom: none; }
+    .account-row { grid-template-columns: 30px 1fr; }
+    .account-row .cat { grid-column: 2; }
+    .account-row .tag-list { grid-column: 1 / -1; margin-top: 6px; }
+    .stamp { display: none; }
+    .remit { flex-direction: column; align-items: flex-start; }
+    nav.masthead-nav { display: none; }
+  }
+
+  :focus-visible { outline: 2px solid var(--stamp); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="masthead-row">
+      <div class="brand">
+        <div class="brand-mark">AR</div>
+        <div class="brand-name">Athul Raj V M</div>
+      </div>
+      <nav class="masthead-nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" style="border-bottom:none; padding-bottom: 0;">
+    <div class="stamp">
+      <span>OPEN TO</span>
+      <span>WORK</span>
+      <span class="small">— 2026 —</span>
+    </div>
+    <div class="doc-no">
+      <span>No. 0001</span>
+      <span>Kozhikode, India</span>
+      <span>Statement of Work</span>
+    </div>
+    <h1>I build the systems that keep a business's <em>numbers straight.</em></h1>
+    <p class="hero-sub">Full Stack Developer with 1.7 years building production Django applications — the kind that handle real ledgers, real invoices, and real patient records, not just demos. I like the unglamorous part of software: the part where the data has to be correct.</p>
+
+    <div class="hero-meta">
+      <div>
+        <div class="label">Role</div>
+        <div class="value">Full Stack Developer</div>
+      </div>
+      <div>
+        <div class="label">Stack</div>
+        <div class="value">Python · Django · MySQL</div>
+      </div>
+      <div>
+        <div class="label">Based in</div>
+        <div class="value">Kozhikode, Kerala</div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn-stamp" href="resume.pdf" target="_blank" rel="noopener">
+        ↓ Download Resume
+      </a>
+      <a class="link-plain" href="mailto:athulrajvm2002@gmail.com">athulrajvm2002@gmail.com</a>
+      <a class="link-plain" href="https://www.linkedin.com/in/athul-raj-vm" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <span class="section-no">01</span>
+      <span class="section-title">About</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I started out wanting to build things people actually use — not just tutorials. Over the last 1.7 years at <strong>Altos Technology</strong>, that meant writing the backend logic behind an accounting system that real staff use every day, a billing platform with role-based permissions for admins and cashiers, and a patient record system where a mistake in the code means a mistake in someone's medical history.</p>
+        <p>That's shaped how I write software: <strong>correctness first, then speed.</strong> I care about clean database design, APIs that don't surprise the next developer, and code that's boring in the best way — predictable, documented, and easy to hand off.</p>
+        <p>I work end-to-end: Django and MySQL on the backend, HTML/CSS/JavaScript on the front, and everything in between — schema design, authentication, query optimization, and the occasional late-night debugging session that taught me more than any course did.</p>
+      </div>
+      <div>
+        <div class="stat-block">
+          <div class="stat-num">30%</div>
+          <div class="stat-label">Faster data entry after rebuilding an accounting workflow in Django</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Production systems shipped — accounting, testing, records, billing</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">1.7 yrs</div>
+          <div class="stat-label">Hands-on experience, Python / Django / MySQL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <span class="section-no">02</span>
+      <span class="section-title">Chart of Skills</span>
+    </div>
+    <div class="accounts">
+      <div class="account-row">
+        <div class="idx">01</div>
+        <div class="cat">Languages</div>
+        <div class="tag-list">
+          <span class="tag">Python</span><span class="tag">Java</span>
+        </div>
+      </div>
+      <div class="account-row">
+        <div class="idx">02</div>
+        <div class="cat">Backend</div>
+        <div class="tag-list">
+          <span class="tag">Django</span><span class="tag">MVT Architecture</span><span class="tag">REST APIs</span><span class="tag">Authentication &amp; RBAC</span>
+        </div>
+      </div>
+      <div class="account-row">
+        <div class="idx">03</div>
+        <div class="cat">Frontend</div>
+        <div class="tag-list">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Responsive Design</span>
+        </div>
+      </div>
+      <div class="account-row">
+        <div class="idx">04</div>
+        <div class="cat">Database</div>
+        <div class="tag-list">
+          <span class="tag">MySQL</span><span class="tag">Schema Design</span><span class="tag">Query Optimization</span><span class="tag">Indexing</span>
+        </div>
+      </div>
+      <div class="account-row">
+        <div class="idx">05</div>
+        <div class="cat">Tools &amp; Practice</div>
+        <div class="tag-list">
+          <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Agile</span><span class="tag">Debugging</span><span class="tag">Documentation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <span class="section-no">03</span>
+      <span class="section-title">Work Ledger</span>
+    </div>
+    <div class="ledger-entry">
+      <div class="ledger-top">
+        <div>
+          <div class="ledger-role">Full Stack Developer (Python / Django)</div>
+          <div class="ledger-co">Altos Technology — Kochi, Kerala</div>
+        </div>
+        <div class="ledger-period">OCT 2024 — MAY 2026</div>
+      </div>
+      <div class="ledger-lines">
+        <div class="ledger-line">
+          <span>Built a full-stack accounting application — ledgers, invoicing, expense tracking — using Python, Django, and MySQL.</span>
+          <span class="credit">+30% efficiency</span>
+        </div>
+        <div class="ledger-line">
+          <span>Built an online aptitude test platform with real-time result calculation and admin analytics via Django ORM.</span>
+          <span class="credit">Live analytics</span>
+        </div>
+        <div class="ledger-line">
+          <span>Built a patient record system for appointments, billing, and prescriptions with secure role-based access.</span>
+          <span class="credit">Secure RBAC</span>
+        </div>
+        <div class="ledger-line">
+          <span>Built a role-based billing system for admin, cashier, and manager roles with invoice generation and sales tracking.</span>
+          <span class="credit">Multi-role</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <span class="section-no">04</span>
+      <span class="section-title">Project Ledger</span>
+    </div>
+    <p class="section-lede">Academic and self-directed projects — where I first learned to take an idea from a blank file to something that runs.</p>
+    <div class="receipts">
+      <div class="receipt">
+        <div class="receipt-no">REF #2401 · DEC 2023 – MAY 2024</div>
+        <h3>Identifying Students At-Risk</h3>
+        <p>A hybrid ensemble model (Logistic Regression, SVM) that predicts student performance and flags at-risk students early, to support failure-prevention interventions.</p>
+        <div class="tag-list">
+          <span class="tag">Python</span><span class="tag">ML</span><span class="tag">Data Analysis</span>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="receipt-no">REF #2306 · JUN 2023 – AUG 2023</div>
+        <h3>Stock Visualization &amp; Forecasting</h3>
+        <p>A machine learning tool that forecasts stock prices from real-time market data, with a front-end for visualizing predicted trends.</p>
+        <div class="tag-list">
+          <span class="tag">Python</span><span class="tag">ML</span><span class="tag">Forecasting</span>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="receipt-no">REF #2311 · NOV 2023</div>
+        <h3>Shoes Cart — E-Commerce</h3>
+        <p>A Django-based e-commerce platform for browsing and purchasing shoes across categories, with a full cart-to-checkout flow.</p>
+        <div class="tag-list">
+          <span class="tag">Django</span><span class="tag">MySQL</span><span class="tag">E-commerce</span>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="receipt-no">REF #2312 · NOV 2023</div>
+        <h3>KnowledgeFlow LMS</h3>
+        <p>A learning-institution management platform with dedicated admin, teacher, and student modules for tuition centers.</p>
+        <div class="tag-list">
+          <span class="tag">Django</span><span class="tag">MySQL</span><span class="tag">Multi-role</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <span class="section-no">05</span>
+      <span class="section-title">Education &amp; Certifications</span>
+    </div>
+    <table class="edu-table">
+      <thead>
+        <tr><th>Credential</th><th>Institution</th><th style="text-align:right;">Year</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="deg">B.Tech, Information Technology</td>
+          <td>KMCT College of Engineering, Kozhikode</td>
+          <td class="right">2020 – 2024</td>
+        </tr>
+        <tr>
+          <td class="deg">Internship — Cyber Security &amp; Ethical Hacking</td>
+          <td>—</td>
+          <td class="right">—</td>
+        </tr>
+        <tr>
+          <td class="deg">Data Visualization &amp; Storytelling using Power BI</td>
+          <td>—</td>
+          <td class="right">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer id="contact">
+    <div class="remit">
+      <div>
+        <h2>Let's build something that has to be correct.</h2>
+        <p>Open to Full Stack Developer roles — remote or Kerala-based. Usually replies within a day.</p>
+      </div>
+      <div class="contact-list">
+        <a href="mailto:athulrajvm2002@gmail.com"><span class="k">Email</span> athulrajvm2002@gmail.com</a>
+        <a href="tel:+917902849015"><span class="k">Phone</span> +91 7902849015</a>
+        <a href="https://www.linkedin.com/in/athul-raj-vm" target="_blank" rel="noopener"><span class="k">LinkedIn</span> /in/athul-raj-vm</a>
+      </div>
+    </div>
+    <div class="foot-note">STATEMENT No. 0001 — PREPARED BY ATHUL RAJ V M — KOZHIKODE, INDIA</div>
+  </footer>
+</div>
+
+</body>
+</html>
