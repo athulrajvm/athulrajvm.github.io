@@ -42,7 +42,7 @@
   }
   .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
 
-  /* background atmosphere */
+
   .bg-grid{
     position:fixed; inset:0; z-index:0; pointer-events:none;
     background-image:
@@ -62,7 +62,7 @@
 
   main{position:relative; z-index:1;}
 
-  /* ---------- Nav ---------- */
+
   header{
     position:sticky; top:0; z-index:50;
     backdrop-filter:blur(14px);
@@ -88,7 +88,7 @@
   }
   .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;}
 
-  /* ---------- Hero ---------- */
+
   .hero{padding:96px 0 60px; display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;}
   .badge{
     display:inline-flex; align-items:center; gap:8px;
@@ -125,7 +125,7 @@
   }
   .social-row a:hover{color:var(--text); border-color:var(--accent-a); background:var(--surface-2);}
 
-  /* photo + stat card */
+
   .hero-visual{position:relative;}
   .photo-frame{
     width:100%; aspect-ratio:1/1; border-radius:24px; padding:5px;
@@ -156,7 +156,7 @@
   .scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--muted),transparent); animation:scrolldown 1.8s infinite;}
   @keyframes scrolldown{ 0%{opacity:0;transform:translateY(-6px);} 40%{opacity:1;} 100%{opacity:0;transform:translateY(12px);} }
 
-  /* ---------- Reveal ---------- */
+
   .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
   .stagger .reveal:nth-child(1){transition-delay:.02s;}
@@ -165,7 +165,7 @@
   .stagger .reveal:nth-child(4){transition-delay:.23s;}
   .stagger .reveal:nth-child(5){transition-delay:.30s;}
 
-  /* ---------- Section shell ---------- */
+
   section{padding:100px 0;}
   .eyebrow{
     display:flex; align-items:center; gap:10px; margin-bottom:14px;
@@ -175,7 +175,7 @@
   h2.sec-title{font-size:clamp(26px,3.4vw,36px); font-weight:700; margin:0 0 16px;}
   .sec-lede{color:var(--muted); max-width:60ch; line-height:1.7; margin-bottom:48px; font-size:15px;}
 
-  /* ---------- About ---------- */
+
   .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:50px;}
   .about-grid p{color:var(--muted); line-height:1.8; font-size:15px; margin:0 0 16px;}
   .about-grid p strong{color:var(--text); font-weight:600;}
@@ -188,7 +188,7 @@
   .mini-stat .num{font-family:'Space Grotesk'; font-weight:700; font-size:26px;}
   .mini-stat .lbl{font-size:12.5px; color:var(--muted); margin-top:4px; line-height:1.4;}
 
-  /* ---------- Skills ---------- */
+
   .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
   .skill-card{
     background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px 22px 20px;
@@ -206,7 +206,7 @@
     border:1px solid var(--border); padding:5px 10px; border-radius:6px;
   }
 
-  /* ---------- Experience timeline ---------- */
+
   .timeline{position:relative; padding-left:32px;}
   .timeline::before{content:"";position:absolute; left:6px; top:6px; bottom:6px; width:1.5px; background:linear-gradient(var(--accent-a),var(--accent-b));}
   .t-item{position:relative; padding-bottom:36px;}
@@ -226,7 +226,7 @@
   .t-list li::marker{color:var(--accent-a);}
   .t-list li{margin-bottom:6px;}
 
-  /* ---------- Projects ---------- */
+
   .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
   .proj-card{
     background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:26px;
@@ -249,7 +249,7 @@
   .proj-card h3{font-family:'Space Grotesk'; font-size:17.5px; margin:0 0 10px;}
   .proj-card p{color:var(--muted); font-size:14px; line-height:1.7; margin:0 0 18px;}
 
-  /* ---------- Education ---------- */
+
   .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
   .edu-card{background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px 24px; display:flex; gap:16px; align-items:flex-start;}
   .edu-icon{width:36px;height:36px;border-radius:9px;background:rgba(52,228,234,.12); color:var(--accent-b); display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
@@ -257,7 +257,7 @@
   .edu-card .sub{color:var(--muted); font-size:13px; margin-bottom:3px;}
   .edu-card .yr{font-family:'JetBrains Mono'; font-size:11.5px; color:var(--accent-b);}
 
-  /* ---------- Contact ---------- */
+
   .contact-card{
     background:linear-gradient(135deg, rgba(124,106,251,0.14), rgba(52,228,234,0.08));
     border:1px solid var(--border); border-radius:24px; padding:64px 56px; text-align:center;
@@ -270,7 +270,7 @@
   footer{padding:36px 0 50px; text-align:center;}
   .foot-note{font-family:'JetBrains Mono'; font-size:11.5px; color:var(--muted);}
 
-  /* ---------- Responsive ---------- */
+
   @media (max-width:860px){
     nav.links{display:none;}
     .menu-btn{display:block;}
@@ -338,14 +338,14 @@
       <div class="photo-frame">
         <img src="profile.jpg" alt="Athul Raj V M">
       </div>
-      <div class="stat-float s1">
+      <!-- <div class="stat-float s1">
         <div class="stat-icon">⚡</div>
         <div><div class="num" data-count="30">0</div><div class="lbl">% efficiency gain</div></div>
       </div>
       <div class="stat-float s2">
         <div class="stat-icon">◆</div>
         <div><div class="num" data-count="4">0</div><div class="lbl">systems shipped</div></div>
-      </div>
+      </div> -->
     </div>
   </section>
 
